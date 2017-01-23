@@ -27,36 +27,41 @@ else:
 
 	citiBikeDataRaw = []
 
-	for x in range(len(citiBikeDataFileNames)):
-		filepath = citiBikeDataDirectory + "/" + citiBikeDataFileNames[x]
+	for file in citiBikeDataFileNames:
+		filepath = citiBikeDataDirectory + "/" + file
 		with open(filepath) as f:
 			lines = f.read().splitlines()
 			lines.pop(0) #get rid of the first line that contains the column names
-			for c in range(len(lines)):
-				lines[c] = lines[c].replace('"','')
-				lines[c] = lines[c].split(",")
-				sLatLong = (lines[c][5], lines[c][6])
-				eLatLong = (lines[c][9], lines[c][10])
+			for line in lines:
+				line = line.replace('"','')
+				line = line.split(",")
+				sLatLong = (line[5], line[6])
+				eLatLong = (line[9], line[10])
 				distance = vincenty(sLatLong, eLatLong).miles
-				lines[c].extend([distance])
-			citiBikeDataRaw.extend(lines)
+				line.extend([distance])
+				citiBikeDataRaw.append(line)
+			del lines
 
 	with open(weatherDataFile) as f:
 		weatherDataRaw = f.read().splitlines()
 		weatherDataRaw.pop(0) #again, get rid of the column names
 		for c in range(len(weatherDataRaw)):
 			weatherDataRaw[c] = weatherDataRaw[c].split(",")
+			#Adjust days and months to have a leading zero so we can capture all the data
+			if len(weatherDataRaw[c][2]) < 2:
+				weatherDataRaw[c][2] = "0" + weatherDataRaw[c][2]
+			if len(weatherDataRaw[c][0]) < 2:
+				weatherDataRaw[c][0] = "0" + weatherDataRaw[c][0]
 
 	citiBikeData = []
 
-	for i in range(len(citiBikeDataRaw)):
-		instance = citiBikeDataRaw[i]
-		date = citiBikeDataRaw[i][1].split(" ")[0].split("-") #uses the start date of the loan
-		for j in range(len(weatherDataRaw)):
-			if (date[0] == weatherDataRaw[j][4] and date[1] == weatherDataRaw[j][2] and date[2] == weatherDataRaw[j][0]):
-				instance.extend([weatherDataRaw[j][5], weatherDataRaw[j][6], weatherDataRaw[j][7], weatherDataRaw[j][8], weatherDataRaw[j][9]])
+	while(citiBikeDataRaw):
+		instance = citiBikeDataRaw.pop()
+		date = instance[1].split(" ")[0].split("-") #uses the start date of the loan
+		for record in weatherDataRaw:
+			if (str(date[0]) == str(record[4]) and str(date[1]) == str(record[2]) and str(date[2]) == str(record[0])):
+				instance.extend([record[5], record[6], record[7], record[8], record[9]])
 				citiBikeData.append(instance)
-				break
 	
 	del citiBikeDataRaw
 	del weatherDataRaw
