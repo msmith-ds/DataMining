@@ -3,8 +3,6 @@ import sys
 import re
 from geopy.distance import vincenty
 
-workDirectory = ""
-
 if os.path.isfile("Compiled Data/dataset1.csv"):
 	print("Found the File!")
 else:
@@ -59,7 +57,10 @@ else:
 				instance.extend([weatherDataRaw[j][5], weatherDataRaw[j][6], weatherDataRaw[j][7], weatherDataRaw[j][8], weatherDataRaw[j][9]])
 				citiBikeData.append(instance)
 				break
-
+	
+	del citiBikeDataRaw
+	del weatherDataRaw
+	
 	#Final Columns:
 	#  0 tripduration
 	#  1 starttime
