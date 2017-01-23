@@ -94,5 +94,5 @@ else:
 			lineCounter = 1
 			fileCounter = fileCounter + 1
 			f = open(outputDirectoryFilename + str(fileCounter) + ".csv","w")
-		f.write(",".join(line) + "\n")
+		f.write(",".join(map(str, line)) + "\n")
 		lineCounter = lineCounter + 1
