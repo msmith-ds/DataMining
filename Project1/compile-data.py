@@ -14,21 +14,22 @@ if os.path.isfile("Compiled Data/dataset1.csv"):
     print("Found the File!")
 else:
     citiBikeDataDirectory = "Citi Bike Data"
-    citiBikeDataFileNames = [
-       "2013-07 - Citi Bike trip data - 1.csv",
-       "2013-07 - Citi Bike trip data - 2.csv",
-       "2013-08 - Citi Bike trip data - 1.csv",
-       "2013-08 - Citi Bike trip data - 2.csv",
-       "2013-09 - Citi Bike trip data - 1.csv",
-       "2013-09 - Citi Bike trip data - 2.csv",
-       "2013-10 - Citi Bike trip data - 1.csv",
-       "2013-10 - Citi Bike trip data - 2.csv",
-       "2013-11 - Citi Bike trip data - 1.csv",
-       "2013-11 - Citi Bike trip data - 2.csv",
-       "2013-12 - Citi Bike trip data.csv",
-       "2014-01 - Citi Bike trip data.csv",
-       "2014-02 - Citi Bike trip data.csv"
-    ]
+    citiBikeDataFileNames = ["2013-12 - Citi Bike trip data.csv"]
+##   [
+##      "2013-07 - Citi Bike trip data - 1.csv",
+##      "2013-07 - Citi Bike trip data - 2.csv",
+##      "2013-08 - Citi Bike trip data - 1.csv",
+##      "2013-08 - Citi Bike trip data - 2.csv",
+##      "2013-09 - Citi Bike trip data - 1.csv",
+##      "2013-09 - Citi Bike trip data - 2.csv",
+##      "2013-10 - Citi Bike trip data - 1.csv",
+##      "2013-10 - Citi Bike trip data - 2.csv",
+##      "2013-11 - Citi Bike trip data - 1.csv",
+##      "2013-11 - Citi Bike trip data - 2.csv",
+##      "2013-12 - Citi Bike trip data.csv",
+##      "2014-01 - Citi Bike trip data.csv",
+##      "2014-02 - Citi Bike trip data.csv"
+##   ]
 
     weatherDataFile = "Weather Data/NY305801_9255_edited.txt"
 
@@ -60,18 +61,17 @@ else:
                     DayOfWeek = "Monday"
                 elif parse(line[1]).weekday() == 1:
                     DayOfWeek = "Tuesday"
-                elif parse(line[1]).weekday() == 1:
+                elif parse(line[1]).weekday() == 2:
                     DayOfWeek = "Wednesday"
-                elif parse(line[1]).weekday() == 1:
+                elif parse(line[1]).weekday() == 3:
                     DayOfWeek = "Thursday"
-                elif parse(line[1]).weekday() == 1:
+                elif parse(line[1]).weekday() == 4:
                     DayOfWeek = "Friday"
-                elif parse(line[1]).weekday() == 1:
+                elif parse(line[1]).weekday() == 5:
                     DayOfWeek = "Saturday"
                 else:
                     DayOfWeek = "Sunday"
                 line.extend([DayOfWeek])
-
 
                 ##Morning       5AM-10AM
                 ##Midday        10AM-2PM
@@ -79,17 +79,18 @@ else:
                 ##Evening       5PM-10PM
                 ##Night         10PM-5AM
 
-                if parse(line[1]).hour >= 5 and parse(line[2]).hour < 10:
+                if parse(line[1]).hour >= 5 and parse(line[1]).hour < 10:
                     TimeOfDay = 'Morning'
-                elif parse(line[1]).hour >= 10 and parse(line[2]).hour < 14:
+                elif parse(line[1]).hour >= 10 and parse(line[1]).hour < 14:
                     TimeOfDay = 'Midday'
-                elif parse(line[1]).hour >= 14 and parse(line[2]).hour < 17:
+                elif parse(line[1]).hour >= 14 and parse(line[1]).hour < 17:
                     TimeOfDay = 'Afternoon'
-                elif parse(line[1]).hour >= 17 and parse(line[2]).hour < 22:
+                elif parse(line[1]).hour >= 17 and parse(line[1]).hour < 22:
                     TimeOfDay = 'Evening'
                 else:
                     TimeOfDay = 'Night'
                 line.extend([TimeOfDay])
+
 
                 if parse(line[1]) in holidays.UnitedStates():
                     holidayFlag = "1"
@@ -167,3 +168,4 @@ else:
 endtime = datetime.now()
 print("RunTime: ")
 print(endtime-starttime)
+
