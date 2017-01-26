@@ -14,22 +14,21 @@ if os.path.isfile("Compiled Data/dataset1.csv"):
     print("Found the File!")
 else:
     citiBikeDataDirectory = "Citi Bike Data"
-    citiBikeDataFileNames = ["2013-12 - Citi Bike trip data.csv"]
-##   [
-##      "2013-07 - Citi Bike trip data - 1.csv",
-##      "2013-07 - Citi Bike trip data - 2.csv",
-##      "2013-08 - Citi Bike trip data - 1.csv",
-##      "2013-08 - Citi Bike trip data - 2.csv",
-##      "2013-09 - Citi Bike trip data - 1.csv",
-##      "2013-09 - Citi Bike trip data - 2.csv",
-##      "2013-10 - Citi Bike trip data - 1.csv",
-##      "2013-10 - Citi Bike trip data - 2.csv",
-##      "2013-11 - Citi Bike trip data - 1.csv",
-##      "2013-11 - Citi Bike trip data - 2.csv",
-##      "2013-12 - Citi Bike trip data.csv",
-##      "2014-01 - Citi Bike trip data.csv",
-##      "2014-02 - Citi Bike trip data.csv"
-##   ]
+    citiBikeDataFileNames =[
+        "2013-07 - Citi Bike trip data - 1.csv",
+        "2013-07 - Citi Bike trip data - 2.csv",
+        "2013-08 - Citi Bike trip data - 1.csv",
+        "2013-08 - Citi Bike trip data - 2.csv",
+        "2013-09 - Citi Bike trip data - 1.csv",
+        "2013-09 - Citi Bike trip data - 2.csv",
+        "2013-10 - Citi Bike trip data - 1.csv",
+        "2013-10 - Citi Bike trip data - 2.csv",
+        "2013-11 - Citi Bike trip data - 1.csv",
+        "2013-11 - Citi Bike trip data - 2.csv",
+        "2013-12 - Citi Bike trip data.csv",
+        "2014-01 - Citi Bike trip data.csv",
+        "2014-02 - Citi Bike trip data.csv"
+    ]
 
     weatherDataFile = "Weather Data/NY305801_9255_edited.txt"
 
